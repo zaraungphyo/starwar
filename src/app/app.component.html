@@ -1,0 +1,46 @@
+<div class="container">
+  <!-- Image and text -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="javascript:;"><h4>Star War</h4></a>
+      <button class="navbar-toggler  btn-outline-success" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/products/']">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/product-add/']">Add New Movie</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/catalog-add/']">Add New Category</a>
+            </li>
+          </ul>
+          <div class="dropdown show">
+            <a class="btn btn-primary dropdown-toggle btn-lg" href="#" role="button" id="dropdownMenuLink" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search By Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a *ngFor="let item of catalogs" class="dropdown-item" 
+              [routerLink]="['/product-list',item._id]"
+              routerLinkActive="on"
+               [routerLinkActiveOptions]="{ __change_detection_hack__: [ _id ] }"
+              >{{item.catalog_name}}</a>
+            </div>
+          </div>
+          
+      </div>
+     
+  </nav>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

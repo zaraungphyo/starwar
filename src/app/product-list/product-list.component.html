@@ -1,0 +1,47 @@
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <div class="row">
+    <div class="col-md-4">
+      <input type = "text" placeholder="search movie" class="form-control mr-sm-2" [(ngModel)]="txtValue" />
+    </div>
+  <div>
+  <br>
+  <div class="row" >
+      <div class="col-md-3 col-sm-4 col-xs-12 single_portfolio_text" *ngFor="let item of paginate_data | searchgallery:txtValue; let i = index">
+          <img [src]="'data:image/jpg;base64,'+ item.image">
+          <div class="portfolio_images_overlay text-center">
+            <h6 class="clrd-font">{{item.prod_name}}</h6>
+            <p class="clrd-font product_price"> <i class="fa fa-usd clrd-font" aria-hidden="true"></i> {{item.prod_price}}</p>
+            <a href="#" class="btn btn-primary" [routerLink]="['/product-details/', item._id]">More Details</a>
+          </div>
+          <a class="fancybox" rel="ligthbox" href="javascript:;">
+            <div class="zoom"></div>
+          </a>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+     <mat-paginator [length]="data_source.length" 
+                [pageSize]="pageSize" 
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="pageEvent = onPageChanged($event)">
+  </mat-paginator> 
+    </div>
+  <div>
+  
+
+     <!-- <div *ngIf="pageEvent">
+        <h5>Page Change Event Properties</h5>
+        <div>List length: {{pageEvent.length}}</div>
+        <div>Page size: {{pageEvent.pageSize}}</div>
+        <div>Page index: {{pageEvent.pageIndex}}</div>
+      </div>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+    });
+});
+</script>
